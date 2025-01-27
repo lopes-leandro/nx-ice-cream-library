@@ -33,6 +33,37 @@
               "zone.js/testing"
             ]
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/nx-ice-cream/.storybook",
+            "browserTarget": "nx-ice-cream:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/nx-ice-cream"
+            ],
+            "port": 6006,
+            "styles": ["projects/nx-ice-cream/src/styles/main.scss"]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/nx-ice-cream/.storybook",
+            "browserTarget": "nx-ice-cream:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/nx-ice-cream"
+            ],
+            "outputDir": "storybook-static"
+          }
         }
       }
     }
