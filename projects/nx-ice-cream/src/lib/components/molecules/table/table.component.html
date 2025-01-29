@@ -1,0 +1,33 @@
+<table>
+    <thead>
+        <tr>
+            @for (column of columns; track column) {
+            <th class="heading"> {{column.label}}</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (row of data; track row; let rowIndex = $index) {
+        <tr>
+            @for (column of columns; track column) {
+            <td>
+                @if (editing?.rowIndex === rowIndex && editing?.columnKey === column.key) {
+                <form #editForm="ngForm" (ngSubmit)="onSave(editForm, rowIndex, column.key)">
+                    <button type="submit">Save</button>
+                    <input class="paragraph-middle" type="text" [name]="convertString(column.key)" [ngModel]="row[column.key]">
+                </form>
+                }
+                @else {
+                @if (column.editTable) {
+                <button (click)="onEdit(rowIndex, column.key)">Edit</button>
+                <span class="paragraph-middle">{{row[column.key]}}</span>
+                } @else {
+                <span class="paragraph-middle">{{row[column.key]}}</span>
+                }
+                }
+            </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
