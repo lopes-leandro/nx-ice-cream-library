@@ -9,3 +9,14 @@
     transform: $transform-500;
     color: $color-secondary-100;
 }
+
+.heading {
+    font-family: $font-family-primary !important;
+}
+
+.paragraph-middle {
+    font-family: $font-family-primary !important;
+    font-weight: $font-weight-400;
+    color: $color-support-800;
+    line-height: $line-height-support-100;
+}

@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/nx-ice-cream",
       "sourceRoot": "projects/nx-ice-cream/src",
-      "prefix": "lib",
+      "prefix": "icm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
