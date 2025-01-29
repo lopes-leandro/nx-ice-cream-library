@@ -3,3 +3,4 @@
  */
 
 export * from './lib/components/atoms/title';
+export * from './lib/components/atoms/icon';

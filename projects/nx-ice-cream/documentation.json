@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "Product",
-            "id": "interface-Product-04ae1e3bbdbb8ece56260f5c1efbbc355d9fca911af43a76e992a1de6be338c97723780d57ee549c078805faf3fff5f0c68fc510cf54bc5c0f234e254b8d9c8c",
+            "id": "interface-Product-60a154fcdd8ba2c8c029da4f919f93cc43161ff4d28b71f4b97dc041275cc53f7f00035d74e000531f60881e7ff2cfc5a4618b826ff5331fae8a64da9860a21b",
             "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\r\nimport { TableComponent } from '../table.component';\r\nimport { TableColumn } from '../models/table-data.model';\r\n\r\ninterface Product {\r\n    id: number;\r\n    name: string;\r\n    price: number;\r\n}\r\n\r\nconst meta: Meta<TableComponent<Product>> = {\r\n    title: 'Componentes/molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n};\r\nexport default meta;\r\n\r\ntype Story = StoryObj<TableComponent<Product>>;\r\n\r\n// História padrão\r\nexport const Default: Story = {\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n};",
+            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\r\nimport { TableComponent } from '../table.component';\r\nimport { TableColumn } from '../models/table-data.model';\r\n\r\ninterface Product {\r\n    id: number;\r\n    name: string;\r\n    price: number;\r\n}\r\n\r\nconst meta: Meta<TableComponent<Product>> = {\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n};\r\nexport default meta;\r\n\r\ntype Story = StoryObj<TableComponent<Product>>;\r\n\r\n// História padrão\r\nexport const Default: Story = {\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n};",
             "properties": [
                 {
                     "name": "id",
@@ -60,6 +60,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    args: {\r\n        name: 'house',\r\n        color: 'black'\r\n    }\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/nx-ice-cream/src/lib/components/atoms/title/stories/title.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -74,7 +84,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
+                "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
+            },
+            {
+                "name": "IconList",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "() => ({\r\n    component: IconComponent,\r\n    template: `\r\n        <div style=\"display: flex; gap: 1rem; flex-wrap: wrap\">\r\n            <icm-icon name=\"home\" size=\"2rem\" color=\"blue\"></icm-icon>\r\n        </div>\r\n    `\r\n})"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<IconComponent>",
+                "defaultValue": "{\r\n    title: 'Componentes/Atoms/Icon',\r\n    component: IconComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        name: { \r\n            control: 'select',\r\n            options: [\r\n                'house',\r\n                'bell',\r\n                'gear',\r\n                'star',\r\n                'chat-dots',\r\n                'envelope',\r\n                'person',\r\n                'cloud',\r\n                'check-cirble',\r\n                'camera',\r\n                'heart',\r\n                'cart',\r\n                'trash',\r\n                'pencil',\r\n                'lock'\r\n            ]\r\n        },\r\n        size: { control: 'text'},\r\n        color: { control: 'color'},\r\n    }\r\n}"
             },
             {
                 "name": "meta",
@@ -94,7 +124,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<TableComponent<Product>>",
-                "defaultValue": "{\r\n    title: 'Componentes/molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n}"
+                "defaultValue": "{\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n}"
             },
             {
                 "name": "preview",
@@ -109,6 +139,17 @@
         ],
         "functions": [],
         "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<IconComponent>",
+                "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
             {
                 "name": "Story",
                 "ctype": "miscellaneous",
@@ -134,6 +175,38 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    args: {\r\n        name: 'house',\r\n        color: 'black'\r\n    }\r\n}"
+                },
+                {
+                    "name": "IconList",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n    component: IconComponent,\r\n    template: `\r\n        <div style=\"display: flex; gap: 1rem; flex-wrap: wrap\">\r\n            <icm-icon name=\"home\" size=\"2rem\" color=\"blue\"></icm-icon>\r\n        </div>\r\n    `\r\n})"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<IconComponent>",
+                    "defaultValue": "{\r\n    title: 'Componentes/Atoms/Icon',\r\n    component: IconComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        name: { \r\n            control: 'select',\r\n            options: [\r\n                'house',\r\n                'bell',\r\n                'gear',\r\n                'star',\r\n                'chat-dots',\r\n                'envelope',\r\n                'person',\r\n                'cloud',\r\n                'check-cirble',\r\n                'camera',\r\n                'heart',\r\n                'cart',\r\n                'trash',\r\n                'pencil',\r\n                'lock'\r\n            ]\r\n        },\r\n        size: { control: 'text'},\r\n        color: { control: 'color'},\r\n    }\r\n}"
+                }
+            ],
             "projects/nx-ice-cream/src/lib/components/atoms/title/stories/title.component.stories.ts": [
                 {
                     "name": "Default",
@@ -165,7 +238,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
+                    "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
                 },
                 {
                     "name": "meta",
@@ -175,7 +248,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<TableComponent<Product>>",
-                    "defaultValue": "{\r\n    title: 'Componentes/molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n}"
+                    "defaultValue": "{\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n}"
                 }
             ],
             "projects/nx-ice-cream/.storybook/preview.ts": [
@@ -194,6 +267,19 @@
         "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
+            "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<IconComponent>",
+                    "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/nx-ice-cream/src/lib/components/atoms/title/stories/title.component.stories.ts": [
                 {
                     "name": "Story",
@@ -233,6 +319,46 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconList",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

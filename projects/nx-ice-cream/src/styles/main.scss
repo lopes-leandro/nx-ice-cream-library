@@ -1,11 +1,11 @@
 
 // 1. Importação das abstrações
-@import "./abstracts/variables";
-@import "./abstracts/mixins";
-@import "./abstracts/functions";
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/functions";
 
 // 2. Estilos globais
-@import "./base/reset";
-@import "./base/typography";
+@import "base/reset";
+@import "base/typography";
 
 // 3. Estilos globais
