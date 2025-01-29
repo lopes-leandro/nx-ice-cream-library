@@ -13,5 +13,26 @@ const config: StorybookConfig = {
     name: "@storybook/angular",
     options: {},
   },
+  // webpackFinal: async (config) => {
+
+  //   if (!config.module) return config;
+
+  //   config.module.rules?.push({
+  //     test: /\.(scss|sass|css)$/,
+  //     use: [
+  //       "style-loader",
+  //       "css-loader",
+  //       {
+  //         loader: "sass-loader",
+  //         options: {
+  //           implementation: require("sass"),
+  //           sourceMap: true
+  //         }
+  //       }],
+  //   });
+
+  //   return config;
+  // },
+
 };
 export default config;

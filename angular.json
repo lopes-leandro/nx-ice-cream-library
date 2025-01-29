@@ -47,7 +47,10 @@
               "projects/nx-ice-cream"
             ],
             "port": 6006,
-            "styles": ["projects/nx-ice-cream/src/styles/main.scss"]
+            "styles": [
+              "projects/nx-ice-cream/src/styles/main.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ]
           }
         },
         "build-storybook": {

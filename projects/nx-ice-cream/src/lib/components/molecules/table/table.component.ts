@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableColumn } from './models/table-data.model';
 import { FormsModule, NgForm } from '@angular/forms';
 
@@ -14,6 +14,7 @@ export class TableComponent<T extends object> {
 
   @Input() data: T[] = [];
   @Input() columns: TableColumn<T>[] = [];
+  @Output() save =  new EventEmitter<T>();
 
   protected editing: { rowIndex: number, columnKey: keyof T } | null = null;
 
@@ -32,7 +33,8 @@ export class TableComponent<T extends object> {
     updateData[rowIndex] = updateRow;
 
     this.data = updateData;
-    console.log(updateRow);
+    // console.log(updateRow);
+    this.save.emit(updateRow);
     this.editing = null;
 
   }
