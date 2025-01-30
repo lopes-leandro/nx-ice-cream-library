@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "Product",
-            "id": "interface-Product-60a154fcdd8ba2c8c029da4f919f93cc43161ff4d28b71f4b97dc041275cc53f7f00035d74e000531f60881e7ff2cfc5a4618b826ff5331fae8a64da9860a21b",
+            "id": "interface-Product-fc3533daef0f43702eb4b00f98f12ae1488f4282b0e00cf2d2c4c879e1f17ade06b05bd1d5f8a382d1e80be3ca803458517e3bcae1e973823934eb549c0b23f0",
             "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\r\nimport { TableComponent } from '../table.component';\r\nimport { TableColumn } from '../models/table-data.model';\r\n\r\ninterface Product {\r\n    id: number;\r\n    name: string;\r\n    price: number;\r\n}\r\n\r\nconst meta: Meta<TableComponent<Product>> = {\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n};\r\nexport default meta;\r\n\r\ntype Story = StoryObj<TableComponent<Product>>;\r\n\r\n// História padrão\r\nexport const Default: Story = {\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n};",
+            "sourceCode": "import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';\r\nimport { TableComponent } from '../table.component';\r\nimport { TableBasicDirective } from '../directives/table-basic.directive';\r\nimport { TableStyleCondensedDirective } from '../directives/table-style-condensed.directive';\r\nimport { TableColumn } from '../models/table-data.model';\r\n\r\ninterface Product {\r\n    id: number;\r\n    name: string;\r\n    price: number;\r\n}\r\n\r\ninterface RegionRate {\r\n    regiao: string;\r\n    vlr_tarifa: number;\r\n    vlr_iof: number;\r\n    vrl_total_item: number\r\n}\r\n\r\nconst meta: Meta<TableComponent<Product>> = {\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [TableBasicDirective, TableStyleCondensedDirective]\r\n        })\r\n    ],\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    },\r\n\r\n};\r\nexport default meta;\r\n\r\ntype Story = StoryObj<TableComponent<Product>>;\r\ntype Story2 = StoryObj<TableComponent<RegionRate>>;\r\n\r\n// História padrão\r\nexport const Default: Story = { \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    }\r\n};\r\n\r\n// História padrão\r\nexport const WithEditing: Story = { \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\", editTable: false},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n};\r\n\r\n// História com a diretiva icmTableStyleBasic\r\nexport const WithDirectiveTableBasic: Story = {\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                icmTableBasic\r\n            ></icm-table>\r\n        `\r\n    })\r\n};\r\n\r\n// História com a diretiva icmTableStyleCondensed\r\nexport const WithDirectiveTableStyleCondensed: Story2 = {\r\n    args: {\r\n        data: [\r\n            {regiao: 'Sul', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Note/Nordeste', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Minas Gerais/GO', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Rio de Janeiro/Espírito Santo/São Paulo', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n\r\n        ] ,\r\n        columns: [\r\n            {key: 'regiao', label: \"Região\", editTable: false},\r\n            {key: 'vlr_tarifa', label: \"Prêmio Tarifa\", editTable: false},\r\n            {key: 'vlr_iof', label: \"IOF\", editTable: false},\r\n            {key: 'vrl_total_item', label: \"Prêmio Total (Item)\", editTable: false},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                [icmTableStyleCondensed]=\"'Apartamento habitual'\"\r\n            ></icm-table>\r\n        `\r\n    })\r\n};",
             "properties": [
                 {
                     "name": "id",
@@ -18,7 +18,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 6
+                    "line": 8
                 },
                 {
                     "name": "name",
@@ -28,7 +28,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 7
+                    "line": 9
                 },
                 {
                     "name": "price",
@@ -38,7 +38,62 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 8
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "RegionRate",
+            "id": "interface-RegionRate-fc3533daef0f43702eb4b00f98f12ae1488f4282b0e00cf2d2c4c879e1f17ade06b05bd1d5f8a382d1e80be3ca803458517e3bcae1e973823934eb549c0b23f0",
+            "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';\r\nimport { TableComponent } from '../table.component';\r\nimport { TableBasicDirective } from '../directives/table-basic.directive';\r\nimport { TableStyleCondensedDirective } from '../directives/table-style-condensed.directive';\r\nimport { TableColumn } from '../models/table-data.model';\r\n\r\ninterface Product {\r\n    id: number;\r\n    name: string;\r\n    price: number;\r\n}\r\n\r\ninterface RegionRate {\r\n    regiao: string;\r\n    vlr_tarifa: number;\r\n    vlr_iof: number;\r\n    vrl_total_item: number\r\n}\r\n\r\nconst meta: Meta<TableComponent<Product>> = {\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [TableBasicDirective, TableStyleCondensedDirective]\r\n        })\r\n    ],\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    },\r\n\r\n};\r\nexport default meta;\r\n\r\ntype Story = StoryObj<TableComponent<Product>>;\r\ntype Story2 = StoryObj<TableComponent<RegionRate>>;\r\n\r\n// História padrão\r\nexport const Default: Story = { \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    }\r\n};\r\n\r\n// História padrão\r\nexport const WithEditing: Story = { \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\", editTable: false},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n};\r\n\r\n// História com a diretiva icmTableStyleBasic\r\nexport const WithDirectiveTableBasic: Story = {\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                icmTableBasic\r\n            ></icm-table>\r\n        `\r\n    })\r\n};\r\n\r\n// História com a diretiva icmTableStyleCondensed\r\nexport const WithDirectiveTableStyleCondensed: Story2 = {\r\n    args: {\r\n        data: [\r\n            {regiao: 'Sul', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Note/Nordeste', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Minas Gerais/GO', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Rio de Janeiro/Espírito Santo/São Paulo', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n\r\n        ] ,\r\n        columns: [\r\n            {key: 'regiao', label: \"Região\", editTable: false},\r\n            {key: 'vlr_tarifa', label: \"Prêmio Tarifa\", editTable: false},\r\n            {key: 'vlr_iof', label: \"IOF\", editTable: false},\r\n            {key: 'vrl_total_item', label: \"Prêmio Total (Item)\", editTable: false},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                [icmTableStyleCondensed]=\"'Apartamento habitual'\"\r\n            ></icm-table>\r\n        `\r\n    })\r\n};",
+            "properties": [
+                {
+                    "name": "regiao",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "vlr_iof",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "vlr_tarifa",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "vrl_total_item",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
                 }
             ],
             "indexSignatures": [],
@@ -56,6 +111,16 @@
     "modules": [],
     "miscellaneous": {
         "variables": [
+            {
+                "name": "AllIcons",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    render: () => ({\r\n        props: {\r\n            name: ''\r\n        },\r\n        template: `\r\n        <div style=\"display: flex; gap: 1rem; flex-wrap: wrap\">\r\n        ${meta.argTypes?.name?.options?.map((icon) => `<icm-icon name=\"${icon}\" size=\"2rem\" color=\"blue\"></icm-icon>`)\r\n                .join('')}\r\n            \r\n        </div>\r\n        `,\r\n    }),\r\n}"
+            },
             {
                 "name": "Default",
                 "ctype": "miscellaneous",
@@ -84,17 +149,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
-            },
-            {
-                "name": "IconList",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "() => ({\r\n    component: IconComponent,\r\n    template: `\r\n        <div style=\"display: flex; gap: 1rem; flex-wrap: wrap\">\r\n            <icm-icon name=\"home\" size=\"2rem\" color=\"blue\"></icm-icon>\r\n        </div>\r\n    `\r\n})"
+                "defaultValue": "{ \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    }\r\n}"
             },
             {
                 "name": "meta",
@@ -104,7 +159,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<IconComponent>",
-                "defaultValue": "{\r\n    title: 'Componentes/Atoms/Icon',\r\n    component: IconComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        name: { \r\n            control: 'select',\r\n            options: [\r\n                'house',\r\n                'bell',\r\n                'gear',\r\n                'star',\r\n                'chat-dots',\r\n                'envelope',\r\n                'person',\r\n                'cloud',\r\n                'check-cirble',\r\n                'camera',\r\n                'heart',\r\n                'cart',\r\n                'trash',\r\n                'pencil',\r\n                'lock'\r\n            ]\r\n        },\r\n        size: { control: 'text'},\r\n        color: { control: 'color'},\r\n    }\r\n}"
+                "defaultValue": "{\r\n    title: 'Componentes/Atoms/Icon',\r\n    component: IconComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        name: {\r\n            control: 'select',\r\n            options: [\r\n                'house',\r\n                'bell',\r\n                'gear',\r\n                'star',\r\n                'chat-dots',\r\n                'envelope',\r\n                'person',\r\n                'cloud',\r\n                'check-cirble',\r\n                'camera',\r\n                'heart',\r\n                'cart',\r\n                'trash',\r\n                'pencil',\r\n                'lock',\r\n                'funnel-fill'\r\n            ]\r\n        },\r\n        size: { control: 'text' },\r\n        color: { control: 'color' },\r\n    }\r\n}"
             },
             {
                 "name": "meta",
@@ -124,7 +179,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<TableComponent<Product>>",
-                "defaultValue": "{\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n}"
+                "defaultValue": "{\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [TableBasicDirective, TableStyleCondensedDirective]\r\n        })\r\n    ],\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    },\r\n\r\n}"
             },
             {
                 "name": "preview",
@@ -135,6 +190,36 @@
                 "deprecationMessage": "",
                 "type": "Preview",
                 "defaultValue": "{\r\n  parameters: {\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/i,\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "WithDirectiveTableBasic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                icmTableBasic\r\n            ></icm-table>\r\n        `\r\n    })\r\n}"
+            },
+            {
+                "name": "WithDirectiveTableStyleCondensed",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story2",
+                "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {regiao: 'Sul', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Note/Nordeste', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Minas Gerais/GO', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Rio de Janeiro/Espírito Santo/São Paulo', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n\r\n        ] ,\r\n        columns: [\r\n            {key: 'regiao', label: \"Região\", editTable: false},\r\n            {key: 'vlr_tarifa', label: \"Prêmio Tarifa\", editTable: false},\r\n            {key: 'vlr_iof', label: \"IOF\", editTable: false},\r\n            {key: 'vrl_total_item', label: \"Prêmio Total (Item)\", editTable: false},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                [icmTableStyleCondensed]=\"'Apartamento habitual'\"\r\n            ></icm-table>\r\n        `\r\n    })\r\n}"
+            },
+            {
+                "name": "WithEditing",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{ \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\", editTable: false},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
             }
         ],
         "functions": [],
@@ -171,11 +256,32 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
+            },
+            {
+                "name": "Story2",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TableComponent<RegionRate>>",
+                "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
             }
         ],
         "enumerations": [],
         "groupedVariables": {
             "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts": [
+                {
+                    "name": "AllIcons",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    render: () => ({\r\n        props: {\r\n            name: ''\r\n        },\r\n        template: `\r\n        <div style=\"display: flex; gap: 1rem; flex-wrap: wrap\">\r\n        ${meta.argTypes?.name?.options?.map((icon) => `<icm-icon name=\"${icon}\" size=\"2rem\" color=\"blue\"></icm-icon>`)\r\n                .join('')}\r\n            \r\n        </div>\r\n        `,\r\n    }),\r\n}"
+                },
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
@@ -187,16 +293,6 @@
                     "defaultValue": "{\r\n    args: {\r\n        name: 'house',\r\n        color: 'black'\r\n    }\r\n}"
                 },
                 {
-                    "name": "IconList",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/nx-ice-cream/src/lib/components/atoms/icon/stories/icon.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "() => ({\r\n    component: IconComponent,\r\n    template: `\r\n        <div style=\"display: flex; gap: 1rem; flex-wrap: wrap\">\r\n            <icm-icon name=\"home\" size=\"2rem\" color=\"blue\"></icm-icon>\r\n        </div>\r\n    `\r\n})"
-                },
-                {
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -204,7 +300,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<IconComponent>",
-                    "defaultValue": "{\r\n    title: 'Componentes/Atoms/Icon',\r\n    component: IconComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        name: { \r\n            control: 'select',\r\n            options: [\r\n                'house',\r\n                'bell',\r\n                'gear',\r\n                'star',\r\n                'chat-dots',\r\n                'envelope',\r\n                'person',\r\n                'cloud',\r\n                'check-cirble',\r\n                'camera',\r\n                'heart',\r\n                'cart',\r\n                'trash',\r\n                'pencil',\r\n                'lock'\r\n            ]\r\n        },\r\n        size: { control: 'text'},\r\n        color: { control: 'color'},\r\n    }\r\n}"
+                    "defaultValue": "{\r\n    title: 'Componentes/Atoms/Icon',\r\n    component: IconComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        name: {\r\n            control: 'select',\r\n            options: [\r\n                'house',\r\n                'bell',\r\n                'gear',\r\n                'star',\r\n                'chat-dots',\r\n                'envelope',\r\n                'person',\r\n                'cloud',\r\n                'check-cirble',\r\n                'camera',\r\n                'heart',\r\n                'cart',\r\n                'trash',\r\n                'pencil',\r\n                'lock',\r\n                'funnel-fill'\r\n            ]\r\n        },\r\n        size: { control: 'text' },\r\n        color: { control: 'color' },\r\n    }\r\n}"
                 }
             ],
             "projects/nx-ice-cream/src/lib/components/atoms/title/stories/title.component.stories.ts": [
@@ -238,7 +334,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ],\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
+                    "defaultValue": "{ \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    }\r\n}"
                 },
                 {
                     "name": "meta",
@@ -248,7 +344,37 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<TableComponent<Product>>",
-                    "defaultValue": "{\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    }\r\n}"
+                    "defaultValue": "{\r\n    title: 'Componentes/Molecules/Table',\r\n    component: TableComponent,\r\n    decorators: [\r\n        moduleMetadata({\r\n            imports: [TableBasicDirective, TableStyleCondensedDirective]\r\n        })\r\n    ],\r\n    tags: ['autodocs'],\r\n    argTypes: {\r\n        data: { control: 'object'},\r\n        columns: { control: 'object'}\r\n    },\r\n\r\n}"
+                },
+                {
+                    "name": "WithDirectiveTableBasic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\"},\r\n            {key: 'name', label: \"Nome\"},\r\n            {key: 'price', label: \"Valor\"},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                icmTableBasic\r\n            ></icm-table>\r\n        `\r\n    })\r\n}"
+                },
+                {
+                    "name": "WithDirectiveTableStyleCondensed",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story2",
+                    "defaultValue": "{\r\n    args: {\r\n        data: [\r\n            {regiao: 'Sul', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Note/Nordeste', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Minas Gerais/GO', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n            {regiao: 'Rio de Janeiro/Espírito Santo/São Paulo', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},\r\n\r\n        ] ,\r\n        columns: [\r\n            {key: 'regiao', label: \"Região\", editTable: false},\r\n            {key: 'vlr_tarifa', label: \"Prêmio Tarifa\", editTable: false},\r\n            {key: 'vlr_iof', label: \"IOF\", editTable: false},\r\n            {key: 'vrl_total_item', label: \"Prêmio Total (Item)\", editTable: false},\r\n        ]\r\n    },\r\n    render: (args) => ({\r\n        props: args,\r\n        template: `\r\n            <icm-table\r\n                [data]=\"data\"\r\n                [columns]=\"columns\"\r\n                [icmTableStyleCondensed]=\"'Apartamento habitual'\"\r\n            ></icm-table>\r\n        `\r\n    })\r\n}"
+                },
+                {
+                    "name": "WithEditing",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{ \r\n    args: {\r\n        data: [\r\n            {id: 1, name: 'Laptop', price: 1200},\r\n            {id: 2, name: 'Smartphone', price: 800},\r\n            {id: 3, name: 'Tablet', price: 500},\r\n        ] ,\r\n        columns: [\r\n            {key: 'id', label: \"Código\", editTable: false},\r\n            {key: 'name', label: \"Nome\", editTable: true},\r\n            {key: 'price', label: \"Valor\", editTable: true},\r\n        ]\r\n    }\r\n}"
                 }
             ],
             "projects/nx-ice-cream/.storybook/preview.ts": [
@@ -304,6 +430,17 @@
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 183
+                },
+                {
+                    "name": "Story2",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TableComponent<RegionRate>>",
+                    "file": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
                 }
             ]
         }
@@ -328,7 +465,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Default",
+                "name": "AllIcons",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -338,7 +475,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "IconList",
+                "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -404,6 +541,15 @@
             },
             {
                 "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "RegionRate",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -424,10 +570,50 @@
             },
             {
                 "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithDirectiveTableBasic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithDirectiveTableStyleCondensed",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithEditing",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
                 "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/nx-ice-cream/src/lib/components/molecules/table/stories/table-component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story2",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
