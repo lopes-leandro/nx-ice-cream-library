@@ -48,6 +48,10 @@ table {
             font-weight: 600;
             font-size: 12px;
         }
+
+        tr td:not(:first-child) {
+            text-align: center;
+        }
     }
 }
 

@@ -14,16 +14,17 @@
                 @if (editing?.rowIndex === rowIndex && editing?.columnKey === column.key) {
                 <form #editForm="ngForm" (ngSubmit)="onSave(editForm, rowIndex, column.key)">
                     <button type="submit">Save</button>
-                    <input class="paragraph-middle" type="text" [name]="convertString(column.key)" [ngModel]="row[column.key]">
+                    <input class="paragraph-middle" type="text" [name]="convertString(column.key)"
+                        [ngModel]="row[column.key]">
                 </form>
                 }
                 @else {
-                @if (column.editTable) {
-                <button (click)="onEdit(rowIndex, column.key)">Edit</button>
-                <span class="paragraph-middle">{{row[column.key]}}</span>
-                } @else {
-                <span class="paragraph-middle">{{row[column.key]}}</span>
-                }
+                <button *ngIf="column.editTable" (click)="onEdit(rowIndex, column.key)">Edit</button>
+                <ng-container [ngSwitch]="column.format">
+                    <span class="paragraph-middle" *ngSwitchCase="'currency'">{{row[column.key] |
+                        formatCurrency}}</span>
+                    <span class="paragraph-middle" *ngSwitchDefault>{{row[column.key]}}</span>
+                </ng-container>
                 }
             </td>
             }
