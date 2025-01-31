@@ -3,6 +3,7 @@ import { TableComponent } from '../table.component';
 import { TableBasicDirective } from '../directives/table-basic.directive';
 import { TableStyleCondensedDirective } from '../directives/table-style-condensed.directive';
 import { TableColumn } from '../models/table-data.model';
+import { FormatCurrencyPipe } from '../pipes/format-currency.pipe';
 
 interface Product {
     id: number;
@@ -22,7 +23,7 @@ const meta: Meta<TableComponent<Product>> = {
     component: TableComponent,
     decorators: [
         moduleMetadata({
-            imports: [TableBasicDirective, TableStyleCondensedDirective]
+            imports: [TableBasicDirective, TableStyleCondensedDirective, FormatCurrencyPipe]
         })
     ],
     tags: ['autodocs'],
@@ -110,6 +111,35 @@ export const WithDirectiveTableStyleCondensed: Story2 = {
             {key: 'vlr_tarifa', label: "Prêmio Tarifa", editTable: false},
             {key: 'vlr_iof', label: "IOF", editTable: false},
             {key: 'vrl_total_item', label: "Prêmio Total (Item)", editTable: false},
+        ]
+    },
+    render: (args) => ({
+        props: args,
+        template: `
+            <icm-table
+                [data]="data"
+                [columns]="columns"
+                [icmTableStyleCondensed]="'Apartamento habitual'"
+            ></icm-table>
+        `
+    })
+};
+
+// História com a formatação monetária.
+export const WithPipeFormatCurrency: Story2 = {
+    args: {
+        data: [
+            {regiao: 'Sul', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},
+            {regiao: 'Note/Nordeste', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},
+            {regiao: 'Minas Gerais/GO', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},
+            {regiao: 'Rio de Janeiro/Espírito Santo/São Paulo', vlr_tarifa: 100, vlr_iof: 10, vrl_total_item: 110},
+
+        ] ,
+        columns: [
+            {key: 'regiao', label: "Região", editTable: false},
+            {key: 'vlr_tarifa', label: "Prêmio Tarifa", editTable: false, format: 'currency'},
+            {key: 'vlr_iof', label: "IOF", editTable: false, format: 'currency'},
+            {key: 'vrl_total_item', label: "Prêmio Total (Item)", editTable: false, format: 'currency'},
         ]
     },
     render: (args) => ({

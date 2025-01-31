@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableColumn } from './models/table-data.model';
 import { FormsModule, NgForm } from '@angular/forms';
+import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 @Component({
   selector: 'icm-table',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, FormatCurrencyPipe, NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
