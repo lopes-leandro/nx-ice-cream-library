@@ -4,6 +4,7 @@ import { TableBasicDirective } from '../directives/table-basic.directive';
 import { TableStyleCondensedDirective } from '../directives/table-style-condensed.directive';
 import { TableColumn } from '../models/table-data.model';
 import { FormatCurrencyPipe } from '../pipes/format-currency.pipe';
+import { FormatDatePipe } from '../pipes/format-date.pipe';
 
 interface Product {
     id: number;
@@ -18,12 +19,18 @@ interface RegionRate {
     vrl_total_item: number
 }
 
+interface Apolice {
+    codigo: string;
+    dataVigenciaInicio: string;
+    dataVigenciaFim: string;
+}
+
 const meta: Meta<TableComponent<Product>> = {
     title: 'Componentes/Molecules/Table',
     component: TableComponent,
     decorators: [
         moduleMetadata({
-            imports: [TableBasicDirective, TableStyleCondensedDirective, FormatCurrencyPipe]
+            imports: [TableBasicDirective, TableStyleCondensedDirective, FormatCurrencyPipe, FormatDatePipe]
         })
     ],
     tags: ['autodocs'],
@@ -37,6 +44,7 @@ export default meta;
 
 type Story = StoryObj<TableComponent<Product>>;
 type Story2 = StoryObj<TableComponent<RegionRate>>;
+type Story3 = StoryObj<TableComponent<Apolice>>;
 
 // História padrão
 export const Default: Story = { 
@@ -149,6 +157,33 @@ export const WithPipeFormatCurrency: Story2 = {
                 [data]="data"
                 [columns]="columns"
                 [icmTableStyleCondensed]="'Apartamento habitual'"
+            ></icm-table>
+        `
+    })
+};
+
+
+// História com a diretiva icmTableStyleBasic
+export const WithPipeFormatDate: Story3 = {
+    args: {
+        data: [
+            {codigo: 'XL347762345BR', dataVigenciaInicio: '01-23-2025', dataVigenciaFim: '01-23-2026'},
+            {codigo: 'XL347762345BR', dataVigenciaInicio: '02-10-2025', dataVigenciaFim: '02-10-2026'},
+            {codigo: 'XL347762345BR', dataVigenciaInicio: '02-15-2025', dataVigenciaFim: '02-15-2026'},
+        ] ,
+        columns: [
+            {key: 'codigo', label: "Código"},
+            {key: 'dataVigenciaInicio', label: "Início da Vigência", format: 'date'},
+            {key: 'dataVigenciaFim', label: "Fim da Vigência", format: 'date'},
+        ]
+    },
+    render: (args) => ({
+        props: args,
+        template: `
+            <icm-table
+                [data]="data"
+                [columns]="columns"
+                icmTableBasic
             ></icm-table>
         `
     })

@@ -3,11 +3,12 @@ import { TableColumn } from './models/table-data.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
 import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { FormatDatePipe } from './pipes/format-date.pipe';
 
 @Component({
   selector: 'icm-table',
   standalone: true,
-  imports: [FormsModule, FormatCurrencyPipe, NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf],
+  imports: [FormsModule, FormatCurrencyPipe, FormatDatePipe, NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
