@@ -23,6 +23,8 @@
                 <ng-container [ngSwitch]="column.format">
                     <span class="paragraph-middle" *ngSwitchCase="'currency'">{{row[column.key] |
                         formatCurrency}}</span>
+                    <span class="paragraph-middle" *ngSwitchCase="'date'">{{row[column.key] |
+                        formatDate}}</span>
                     <span class="paragraph-middle" *ngSwitchDefault>{{row[column.key]}}</span>
                 </ng-container>
                 }
